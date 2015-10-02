@@ -1,0 +1,37 @@
+adblogcat(){
+   if [ -n "$1" ];then
+   adb logcat | grep $1
+   else
+   adb logcat
+   fi
+}
+
+startJunosPulse(){
+   launchctl load -w /Library/LaunchAgents/net.juniper.pulsetray.plist
+   launchctl load -w /Library/LaunchDaemons/net.juniper.AccessService.plist
+}
+
+stopJunosPulse(){
+   launchctl unload -w /Library/LaunchAgents/net.juniper.pulsetray.plist
+   launchctl unload -w /Library/LaunchDaemons/net.juniper.AccessService.plist
+}
+
+alias log=adblogcat
+alias un="adb uninstall com.xiaomi.smarthome"
+alias ds="adb shell dumpsys"
+alias windows="adb shell dumpsys window | grep Window{"
+alias ki="adb shell am kill com.xiaomi.smarthome"
+alias gitpush_master="git push origin HEAD:refs/for/master"
+alias adump="aapt dump badging"
+
+export PATH=~/android-tool/dex2jar-0.0.9.15:$PATH
+export PATH=~/android-tool/apktool:$PATH
+export PATH=~/android-tool/jad:$PATH
+export PATH=~/android-tool/proguard5.2beta3/bin:$PATH
+export PATH=~/android-tool/gradle-2.2.1/bin:$PATH
+#export NDK_ROOT=~/android-tool/android-ndk-r10e
+#export ANDROID_NDK_HOME=~/android-tool/android-ndk-r10e
+#export GRADLE_HOME=~/android-tool/gradle-2.2.1
+export ANDROID_SDK_HOME=~/android-tool/android-sdk/
+export ANDROID_HOME=~/android-tool/android-sdk/
+export PATH=$GRADLE_HOME/bin:$PATH
