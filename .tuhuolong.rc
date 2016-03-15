@@ -6,6 +6,12 @@ adblogcat(){
    fi
 }
 
+printcert(){
+   if [ -n "$1" ];then
+   keytool -list -printcert -jarfile $1
+   fi
+}
+
 startJunosPulse(){
    launchctl load -w /Library/LaunchAgents/net.juniper.pulsetray.plist
    launchctl load -w /Library/LaunchDaemons/net.juniper.AccessService.plist
